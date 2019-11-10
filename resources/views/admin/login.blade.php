@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Print Genie - Print on Demand</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/adminlte.min.css')}}">
+  <!-- iCheck -->
+  <link rel="stylesheet" href="{{url('/AdminFILE/plugins/iCheck/square/blue.css')}}">
+  <!-- Google Font: Source Sans Pro -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link rel="stylesheet" href="{{url('/css/admin.css')}}">
+
+  <style type="text/css">
+    .errorBox {
+    background: #f5f5f5;
+    padding: 10px;
+    color: red;
+    text-align: center;
+}
+  </style>
+      <script src="{{ url('/frontend/js/jquery.min.js')}}"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href="{{url('/')}}"><b>Print</b>GENIE</a>
+  </div>
+  <!-- /.login-logo -->
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg">Sign in to start your session</p>
+
+      @if(Session::has('messages'))
+
+            <div class="errorBox">
+                 {{Session::get('messages')}}
+            </div>
+ 
+      @endif
+
+                     @if($errors->has('g-recaptcha-response'))
+                            
+                             <div class="errorBox" for="g-recaptcha-response">
+                              {{$errors->first('g-recaptcha-response')}}
+                            </div>
+
+                         @endif
+
+
+
+      <form action="{{ url('admin/login') }}" method="post">
+        @csrf
+       
+        {{textbox($errors,'Email','email')}}
+        {{password($errors,'Password','password')}}
+         
+          <br>
+        <div class="row">
+          <div class="col-md-12">
+         
+          <!-- /.col -->
+          
+            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+
+                           <label class="errorCapcha" for="g-recaptcha-response">
+                              
+                            </label>
+          
+        </div>
+
+         @if (Route::has('password.request'))
+                                    <a class="btn btn-link text-center" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}
+                                    </a>
+                                @endif
+          <!-- /.col -->
+        </div>
+      </form>
+
+      
+      <!-- /.social-auth-links -->
+
+      
+    </div>
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+ 
+ 
+
+</body>
+</html>
