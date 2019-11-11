@@ -52,7 +52,8 @@ class RegisterController extends Controller
 
          if(!empty($data['type']) && $data['type'] == 1){
             return Validator::make($data, [
-               'name' => ['required', 'string', 'max:255'],
+               'first_name' => ['required', 'string', 'max:255'],
+               'last_name' => ['required', 'string', 'max:255'],
                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
@@ -97,7 +98,7 @@ class RegisterController extends Controller
       public function vendorStore(array $data)
     {
        return $user = User::create([
-            'name' => $data['name'],
+            'name' => $data['first_name'].' '.$data['last_name'],
             'email' => $data['email'],
             'role' => 'vendor',
             'password' => Hash::make($data['password']),

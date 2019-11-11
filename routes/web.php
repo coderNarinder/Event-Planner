@@ -11,13 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/logout', function () {
+   \Auth::logout();
+
+   return redirect('/login');
 });
 
 Auth::routes(['verify' => true]);
 Route::post('/login', 'LoginController@check')->name('post_login');
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@index')->name('homepage');
+Route::get('/home', 'HomeController@index')->name('homepage2');
 Route::get('/vendor/register', 'HomeController@register')->name('vendor_register');
 //Route::post('/vendor/register', 'HomeController@create')->name('vendor_register');
 
@@ -33,8 +36,22 @@ Route::group(['middleware' => ['AdminAuth'],'prefix' => 'admin'], function(){
 });
 
 Route::group(['middleware' => ['VendorAuth'],'prefix' => 'vendor'], function(){
-      Route::get('/', 'Vendor\VendorController@index')->name('vendor_dashboard');    
+      Route::get('/', 'Vendor\VendorController@index')->name('vendor_dashboard'); 
+      Route::get('/settings', 'Vendor\VendorController@vendor_profile')->name('vendor_profile'); 
+      Route::post('/settings', 'Vendor\VendorController@vendorProfile')->name('vendor_profile');
+
+
+
+       Route::get('/settings/password', 'Vendor\VendorController@password')->name('vendor_password'); 
+      Route::post('/settings/password', 'Vendor\VendorController@changePassword')->name('vendor_password'); 
+
       Route::get('/category/assign', 'Vendor\CategoryController@assign')->name('vendor_category_assign');    
+      Route::post('/category/assign', 'Vendor\CategoryController@assignCategory')->name('vendorAssignCategory'); 
+
+
+      Route::get('/{slug}', 'Vendor\ManagementController@index')->name('vendor_category_management');  
+
+
 });
 
 

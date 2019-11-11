@@ -26,7 +26,9 @@ class VendorAuth
                return redirect()->route('login');
             }
         }else{
+
             if( \Auth::user()->role =="vendor" ){
+                    
                      
                         return $next($request);
                               

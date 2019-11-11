@@ -45,21 +45,7 @@
  
             <div class="card-body">
 
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 
 
@@ -89,7 +75,7 @@
                                                </span></sup>
                                    
                                         <a href="{{url(route('edit_category',$cate->slug))}}" class="btn pull-right btn-primary"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{url(route('delete_category',$cate->slug))}}" class="btn pull-right btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{url(route('delete_category',$cate->id))}}" class="btn pull-right btn-danger"><i class="fa fa-trash"></i></a>
                                     </div>
 
 
@@ -113,7 +99,7 @@
                                                </span></sup>
 
                                         <a href="{{url(route('edit_category',$sub->slug))}}" class="btn pull-right btn-primary"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{url(route('delete_category',$sub->slug))}}" class="btn pull-right btn-danger"><i class="fa fa-trash"></i></a>
+                                        <a href="{{url(route('delete_category',$sub->id))}}" class="btn pull-right btn-danger"><i class="fa fa-trash"></i></a>
 
                                           </div>
 

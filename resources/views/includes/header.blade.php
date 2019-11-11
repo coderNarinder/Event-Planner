@@ -1,183 +1,224 @@
-
-
-<div class="loading-div"><img src="{{ url('images/loading-1.gif')}}"></div>
-
-
-
-
-
+<header class="site-header">
     <!-- header starts here -->
-    <header>
-        <div class="top-head">
-            <div class="container cst-container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3">@if(Auth::check())
-                         <a href="{{url('/')}}/{{Auth::user()->role}}" class="tobar-dashboard"><i class="fa fa-dashboard"></i> Go to Dashboard</a>
-                  @endif</div>
-                    <div class="col-xs-7 col-sm-4 center-text">
-                        
-
-                            
-                           <a href="{{getMataData('arrival_link','common')}}" class="new-arrivals">
-
-                           @if(getMataData('arrival_icon','common') != "")  
-                            <div class="img-arraival"> 
-                                <img src="{{url(getMataData('arrival_icon','common'))}}">
-                            </div>
-                            @endif
-                             <span>{{getMataData('arrival_title','common')}}</span>
-                         </a>
-                            
-
-
-                          
-                    </div>
-
-                    <div class="col-xs-5 col-sm-5 add-cart">
-                        <p>
-						         
-                       @guest
-                            <a class="h-button new-main-button" href="{{ url('/login')}}" > Sign In</a>
-							<a class="h-button new-main-button" href="{{ url('/register')}}" > Sign Up</a>                                
-                        @else
-
-
- 
-
-                          
-                        <ul class="login-topbar">
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                 <span><img src="<?= userProfileImage(Auth::user()->id) ?>" width="30" class="img-circle"></span>  {{ strlen(Auth::user()->name) > 6 ?  substr(Auth::user()->name, 0,6).'...' : Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    <a class="dropdown-item" href="{{url(route('user_account_2'))}}">My Account</a> 
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-							<li class="nav-item dropdown h-notifications">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle n-shop" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                  <i class="fas fa-bell"></i><span id="loadQty"><i>(</i>{{Auth::user()->unreadNotifications->count()}}<i>)</i></span><span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                                    @if(Auth::user()->unreadNotifications->count()!=0)
-                                        <a class="dropdown-item" href="{{url(route('markasread_user'))}}">Mark all as read</a>
-                                      @else
-                                        <a class="dropdown-item" href="#">No Notification</a>
-                                      @endif
-                                       
-                                         
-                                          @foreach (Auth::user()->unreadNotifications()->take(5)->get() as $notification)
-               
-             
-                                            <a class="dropdown-item" href="{{$notification->data['details']['link']}}">{{$notification->data['details']['detail']}}</a>
-                                         
-                                       @endforeach
-                                       @if(Auth::user()->unreadNotifications->count()>5)
-                                            <a class="dropdown-item view_all" href="{{url(route('notifications'))}}">View All</a>
-                                       @endif
-                                </div>
-                            </li>
-
-                               
-                        </ul>
-                     
-                        @endguest
-
-
-
-
-
-
-
-
-                            <a class="n-shop" href="{{ url( route('cart_list') ) }}"><i class="fas fa-shopping-bag"></i>
-
-                                <span id="loadQty"><i>(</i>{{CartQTY()}}<i>)</i></span></a>
-                                <a href="{{ url('/product-category') }}" class="btn btn-default new-main-button">New order</a>
-                            </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="logo-sec">
-            <div class="container cst-container">
-                <div class="row align-c">
-                    <div class="bottom-header">
-                        <!--<div class="col-sm-4">
-                          <form method="get" action="{{ url( route('postSearchData') ) }}" id="searchFrom">
-                            @csrf
-                            <div class="search">
-                                <img src="{{ url('/frontend/images/search.png')}}">
-                                <input type="search" class="form-control" id="project" placeholder="Search here...." autocomplete="false">
-                            </div>
-                                
-                                <input type="hidden" id="redirectLink" name="redirectLink">
-                                 
-                        </form>
-
-                        </div>-->
-                        <div class=" col-sm-6 col-md-3 main-logo">
-                            <a href="{{ url('/') }}"><img src="{{url(getMataData('website_logo','common'))}}"></a>
-                        </div>
-                        <div class="col-sm-6 col-md-9">
-                               
-
-                  <div class="row">
-                     <nav class="navbar navbar-default">
-
-                           <div class="container cst-container">
-                                <div class="navbar-header">
-                                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                        <span class="icon-bar"></span>
-                                    </button>
-                                </div>
-
-                                <div class="collapse navbar-collapse" id="myNavbar">
-                                    @include('includes.home.headerMenu')
-
-                                </div>
-
-
-                            </div>
-                        </nav>
-                    </div>
-
-
+    <div class="top-bar">
+        <div class="container">
+           <div class="top-menus-wrap">
+            <button class="menu-toggle" type="button">
+                <span><i class="fas fa-bars"></i></span> Menu
+            </button>
+            <a  href="" class="brand-name"><img src="/frontend/images/logo.svg"></a>
+            <button class="toolbox mob-hide" type="button">
+                <span><i class="fas fa-wrench"></i></span> Toolbox
+            </button>
+            <!-- only for mobile -->
+            <ul class="mob-side-menus">
+                <!-- <li class="user">
+                    <span>
+                        <i class="fas fa-user"></i>
+                    </span>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe </a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 19px, 0px); top: 0px; left: 0px; will-change: transform;">
+                            <a class="dropdown-item" [routerLink]="[ '/' ]" (click)="auth.logout()">Logout</a>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-
-
-
-
- 
-
-
- 
-
+                </li> -->
+            <li>
+            <button class="toolbox" type="button">
+                <span><i class="fas fa-wrench"></i></span> Toolbox
+            </button>
+          </li>
   
+        </ul>
+       </div>
+        <!-- ------------------------ -->
+        </div>
+    </div>
+    
+    <div class="header-links-wrap">
+        <div class="container">
+            <ul class="head-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/vendor/register">New Vendors</a></li>
+                <li class="mob-hide">
+                    <a href="javascript:void(0);" class="fav-list">
+                        <i class="fas fa-heart"></i>
+                        <sup>2</sup>
+                    </a>
+                </li>
+        
+                    <li>
+                    <div class="header-btns">
+                 
+                           @if(Auth::check())
 
+                            <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" href="/{{Auth::user()->role}}">Profile</a>
+    
+                                    <a class="dropdown-item" href="/logout">Logout</a>
+                                </div>
+                            </div>
+                 
+                          @else
+                            <a class="cstm-btn solid-btn">Login</a>
+                            <a class="cstm-btn">Sign Up</a>
+                          @endif
+                        
+                        
+                    </div>
+                </li>
+               
 
-</header>
+                <!-- <li>
+                        <div class="dropdown">
+                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" 
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Lang </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item" (click)="switchLanguage('en')">Eng</a>    
+                                    <a class="dropdown-item" (click)="switchLanguage('fr')">Fr</a>
+                                </div>
+                            </div>
+                </li> -->
 
-    <!-- header ends here -->
+                <li class="show-for-mob">
+                    <div class="icon-grp">
+                       <a href="javascript:void(0);" class=""><i class="fas fa-envelope"></i></a>
+                        <a href="javascript:void(0);" class="fav-list">
+                              <i class="fas fa-heart"></i>
+                              <sup>2</sup>
+                          </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+  
+       <!--For Menu-->
+       <nav id="main-navigation" class="">
+    <div class="container">
+        <ul id="menus-list" class="menu-list">
+            <li>
+                <a href="javascript:void(0);" style="background:url(/frontend/images/menu-home-img.png)">
+                    <span class="nav-item-icon"><i class="fas fa-home"></i></span>
+                    <h3>Home</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" style="background:url(/frontend/images/menu-about.png)">
+                    <span class="nav-item-icon"><i class="fas fa-address-card"></i></span>
+                    <h3>About Us</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" style="background:url(/frontend/images/menu-faq.png)">
+                    <span class="nav-item-icon"><i class="fas fa-comment-dots"></i></span>
+                    <h3>FAQ</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" style="background:url(/frontend/images/menu-contact-us.png)">
+                    <span class="nav-item-icon"><i class="fas fa-id-badge"></i></span>
+                    <h3>Contact Us</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" style="background:url(/frontend/images/menu-policies.png)">
+                    <span class="nav-item-icon"><i class="fas fa-clipboard"></i></span>
+                    <h3>Polices</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" style="background:url(/frontend/images/menu-forum.png)">
+                    <span class="nav-item-icon"><i class="fas fa-users"></i></span>
+                    <h3>Forum</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" style="background:url(/frontend/images/menu-testimonial.png)">
+                    <span class="nav-item-icon"><i class="fas fa-star"></i></span>
+                    <h3>Testimonials</h3>
+                </a>
+            </li>
+           
+            <li>
+                <a routerLink="/vendor-register" style="background:url(/frontend/images/menu-vendor.png)">
+                    <span class="nav-item-icon"><i class="fas fa-star"></i></span>
+                    <h3>New Vendor</h3>
+                </a>
+            </li>
+            <li>
+                <a routerLink="/user-register" style="background:url(/frontend/images/menu-sign.png)">
+                    <span class="nav-item-icon"><i class="fas fa-star"></i></span>
+                    <h3>SignUp</h3>
+                </a>
+            </li>
+      
 
+        </ul>
+    </div>
+    <a href="javascript:void(0);" (click)="close_nav()" class="nav-close-btn"><i class="fas fa-times"></i></a>
+</nav>
+  <!--For toolbox-->
+  <nav id="tool-nav" class="">
+    <div class="container">
+        <ul id="menus-list" class="menu-list">
+            <li>
+                <a href="javascript:void(0);">
+                  <span class="nav-item-icon"><img src="/frontend/images/event-listing.png"/></span>
+                               <h3>Event Checklist</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <span class="nav-item-icon">
+                            <img src="/frontend/images/budgeting-tool.png"/>
+                    </span>
+                    <h3>Budgeting tool</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <span class="nav-item-icon">
+                            <img src="/frontend/images/guest-list.png"/></span>
+                    <h3>Guest List</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <span class="nav-item-icon">
+                            <img src="/frontend/images/calculators.png"/></span>
+                    <h3>Calculator</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <span class="nav-item-icon">
+                            <img src="/frontend/images/forum.png"/></span>
+                    <h3>Forum</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <span class="nav-item-icon">
+                            <img src="/frontend/images/vendor-manager.png"/></span>
+                    <h3>Vendor Manager</h3>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0);">
+                    <span class="nav-item-icon">
+                            <img src="/frontend/images/favourite.png"/></span>
+                    <h3>Favorite</h3>
+                </a>
+            </li>
 
-
+        </ul>
+    </div>
+    <a href="javascript:void(0);" (click)="close_nav()" class="nav-close-btn"><i class="fas fa-times"></i></a>
+</nav>
+   
+  
+    <a href="javascript:void(0);" id="calender-toggle"><span><i class="fas fa-calendar-alt"></i></span></a>
+  </header>
