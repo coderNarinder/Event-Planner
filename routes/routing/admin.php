@@ -4,7 +4,7 @@
 
 
 
-
+          
 
 Route::get('/','Admin\AdminController@dashboard')->name('admin_dashboard');
 Route::get('/profile/settings','Admin\AdminController@profile')->name('admin_settings');

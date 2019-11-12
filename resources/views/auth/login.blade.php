@@ -35,30 +35,15 @@
                             </figure>
                         </div>
                         <div class="col-lg-6">
-                            <form class="signUp-form" method="POST" action="{{ route('login') }}">
+                            <form class="signUp-form" id="loginForm" method="POST" action="{{ url(route('ajax_login')) }}">
 
                                 @csrf
 
-                @if(Session::has('messages'))
-
-                    <h3>{{Session::get('messages')}}</h3>
-
-                @endif
-
-
-                               @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
+                                @if(Session::has('verified') && Session::get('status'))
+                                {{Session::get('status')}}
                                 @endif
 
-
-
+                                @include('vendors.errors')
 
                                <div class="row">                  
                 
@@ -81,26 +66,27 @@
                 
                                </div>
                 
-                               <alert></alert>
+                                
                                <div class="form-links">
-                                            <a class="forgot_password mb-3" routerLink="/password/forgot">Forgot Password?</a>
+                                           
                                         <p> 
                                             Do not have a account please click to register as a
-                                            <a class="forgot_password mb-3" routerLink="/register">User</a>
+                                            <a href="/register">User</a>
                                             or 
-                                            <a class="forgot_password mb-3" routerLink="/vendor/register">Vendor</a>
+                                            <a href="/vendor/register">Vendor</a>
                                         </p>
                                 </div>
                                     <div class="btn-wrap">
                                             <button class="cstm-btn solid-btn">Login</button>
-                                            
-                                            
 
+                                             <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />
                                             @if (Route::has('password.request'))
                                                 <a class="cstm-btn" href="{{ route('password.request') }}">
                                                     {{ __('Forgot Your Password?') }}
                                                 </a>
                                             @endif
+
+                                            <div class="messages"></div>
                                            
                                         </div>
                             </form>
@@ -114,4 +100,12 @@
 
  
  
+@endsection
+
+
+
+@section('scripts')
+
+<script type="text/javascript" src="{{url('/frontend/js/register.js')}}"></script>
+
 @endsection

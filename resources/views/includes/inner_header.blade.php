@@ -3,14 +3,14 @@
         <div class="top-bar inner-header">
             <div class="container">
               <div class="top-inner-nav mob-hide"> 
-                <a class="brand-name"><img src="/frontend/images/logo.svg"></a>
+                <a href="{{url('/')}}" class="brand-name"><img src="/frontend/images/logo.svg"></a>
                 <button class="menu-toggle" type="button">
                     <span><i class="fas fa-bars"></i></span> Menu
                 </button>
                 
                 <ul class="inn-top-navigation">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/vendor/register">New Vendors</a></li>
+                    <li><a href="{{url('/')}}">Home</a></li>
+                    <li><a href="{{url('/vendor/register')}}">New Vendors</a></li>
                     <li>
                         <a href="javascript:void(0);"><i class="fas fa-heart"></i></a>
                     </li>
@@ -33,8 +33,8 @@
                             </div>
                  
                           @else
-                            <a class="cstm-btn solid-btn">Login</a>
-                            <a class="cstm-btn">Sign Up</a>
+                            <a href="{{url('/login')}}" class="cstm-btn solid-btn">Login</a>
+                            <a href="{{url('/register')}}" class="cstm-btn">Sign Up</a>
                           @endif
                         
                         
@@ -49,26 +49,30 @@
                 <button class="menu-toggle" type="button">
                     <span><i class="fas fa-bars"></i></span> Menu
                 </button>
-                <a class="brand-name"><img src="./assets/images/logo.svg"></a>
+                <a class="brand-name"><img src="/frontend/images/logo.svg"></a>
                 <button class="toolbox mob-hide" type="button">
                     <span><i class="fas fa-wrench"></i></span> Toolbox
                 </button>
                 <!-- only for mobile -->
                 <ul class="mob-side-menus">
                     <li class="user">
-                        <span>
+                       
+                   @if(Auth::check())
+
+                    <span>
                             <i class="fas fa-user"></i>
                         </span>
-
-                        
-                            <div class="dropdown">
-                                <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sammy</a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item">Profile</a>
-    
-                                    <a class="dropdown-item">Logout</a>
-                                </div>
-                            </div>
+                  <div class="dropdown">
+                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{Auth::user()->name}}</a>
+                     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="/{{Auth::user()->role}}">Profile</a>
+                        <a class="dropdown-item" href="/logout">Logout</a>
+                     </div>
+                  </div>
+                  @else
+                  <a href="{{url('/login')}}" class="cstm-btn solid-btn">Login</a>
+                  <a href="{{url('/register')}}" class="cstm-btn">Sign Up</a>
+                  @endif
                     </li>
                 <li>
                 <button class="toolbox" type="button">

@@ -32,11 +32,13 @@
     <script src="https://cdn.rawgit.com/michalsnik/aos/2.0.4/dist/aos.js"></script>
     <script src="{{url('/frontend/js/animation.js')}}"></script>
     <script type="text/javascript" src="{{url('/frontend/js/owl.carousel.min.js')}}"></script>
+    <script src="https://yauzer.com/js/validate.min.js"></script>
     <script type="text/javascript" src="{{url('/frontend/js/custom.js')}}"></script>
     <script> 
         AOS.init();
-
     </script>
+@yield('scripts')
+
 </body>
 
 </html>
