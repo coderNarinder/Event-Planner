@@ -33,5 +33,14 @@ Route::post('/category/delete/image/{id}','Admin\CategoryController@deleteImage'
 Route::get('/category/ajax/edit/','Admin\CategoryController@edit2')->name('edit_ajax_category');
 
 
+#----------------------------------------------------------------
+#  Event/Celebration Management
+#----------------------------------------------------------------
 
-
+Route::get('/events','Admin\EventController@index')->name('list_events');
+Route::get('/event/create','Admin\EventController@create')->name('create_event_type');
+Route::post('/event/create','Admin\EventController@store')->name('store_events');
+Route::get('/event/ajax','Admin\EventController@ajax_getEvent')->name('ajax_getEvents');
+Route::get('/event/edit/{slug}','Admin\EventController@edit')->name('edit_event');
+Route::post('/event/edit/{slug}','Admin\EventController@update')->name('update_event');
+Route::get('/event/status/{slug}','Admin\EventController@event_status')->name('event_status');

@@ -12,7 +12,7 @@ class ManagementController extends Controller
 
    public function index()
    {
-   	# code...
+   	  return view('vendors.management.about');
    }
 
 

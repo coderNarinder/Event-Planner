@@ -55,6 +55,24 @@
                   </li>
             </ul>
           </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fa fa-pie-chart"></i>
+              <p>
+                Event/Celebration Types
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview  <?= ActiveMenu(['list_events','create_category','edit_category'],'show') ?>">
+                  <li class="nav-item <?= ActiveMenu(['list_events','create_category','edit_category'],'active') ?>">
+                    <a href="{{ route('list_events') }}" class="nav-link">
+                       <i class="fa fa-caret-right nav-icon"></i>
+                      <p>Event Types</p>
+                    </a>
+                  </li>
+            </ul>
+          </li>
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fa fa-pie-chart"></i>
