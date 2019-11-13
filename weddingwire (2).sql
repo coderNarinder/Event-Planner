@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.4.1deb2ubuntu2.1
--- http://www.phpmyadmin.net
+-- version 4.8.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 13, 2019 at 09:50 PM
--- Server version: 5.7.27-0ubuntu0.16.04.1
--- PHP Version: 7.0.33-12+ubuntu16.04.1+deb.sury.org+1
+-- Host: 127.0.0.1
+-- Generation Time: Nov 13, 2019 at 09:49 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.1.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -174,7 +176,8 @@ INSERT INTO `events` (`id`, `name`, `description`, `slug`, `image`, `status`, `c
 (4, 'Baby Shower', 'Baby Shower', 'baby-shower', NULL, 1, '2019-11-13 03:38:50', '2019-11-13 03:38:50'),
 (5, 'Retreat/ Team Building', 'Retreat/ Team Building', 'retreat-team-building', NULL, 1, '2019-11-13 03:38:58', '2019-11-13 03:38:58'),
 (6, 'Date Night', 'Date Night', 'date-night', NULL, 1, '2019-11-13 03:39:10', '2019-11-13 03:39:10'),
-(7, 'Birth Day', 'Birth Day', 'birth-day', NULL, 1, '2019-11-13 03:39:21', '2019-11-13 03:39:21');
+(7, 'Birth Day', 'Birth Day', 'birth-day', NULL, 1, '2019-11-13 03:39:21', '2019-11-13 03:39:21'),
+(8, 'Hot', 'Hot Des', 'hot', NULL, 1, '2019-11-13 15:05:42', '2019-11-13 15:05:42');
 
 -- --------------------------------------------------------
 
@@ -200,7 +203,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (5, '2019_11_12_172559_create_events_table', 3),
 (6, '2019_11_12_172713_create_amenities_table', 3),
 (7, '2019_11_13_091032_create_vendor_category_meta_datas_table', 4),
-(8, '2019_11_13_111529_create_category_variations_table', 5);
+(8, '2019_11_13_111529_create_category_variations_table', 5),
+(9, '2019_11_13_201236_create_seasons_table', 6);
 
 -- --------------------------------------------------------
 
@@ -220,6 +224,30 @@ CREATE TABLE `password_resets` (
 
 INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 ('bajwa9876470492@gmail.com', '$2y$10$w6Nzc11m9jJ5qxqsW7JhTuEFwHq0udXcINIVH3bdaNNbZnp.Tqb1m', '2019-11-12 10:46:03');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `seasons`
+--
+
+CREATE TABLE `seasons` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` longtext COLLATE utf8mb4_unicode_ci,
+  `slug` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT '1',
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `seasons`
+--
+
+INSERT INTO `seasons` (`id`, `name`, `description`, `slug`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Hots', 'Hot Des', 'hots', NULL, 1, '2019-11-13 15:07:45', '2019-11-13 15:17:02');
 
 -- --------------------------------------------------------
 
@@ -247,7 +275,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `first_name`, `last_name`, `email`, `email_verified_at`, `password`, `role`, `profile_image`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', NULL, NULL, 'admin@gmail.com', NULL, '$2y$10$vR9Oj5Bbl.QAsnS5D7GeR.LgD/gTOO9Sqpl17GScWUZeO07dbTXii', 'admin', 'images/admin/1573645323TGCUAduttOoNN0NQAJYl-220px-User_icon_2.svg.png', '5ZVHTkVAiUArEiBbTirY41I2nHjzzZqn8prdgzOqIX2BNmueJzqxB8ooVTZM', '2019-11-09 00:19:35', '2019-11-13 06:12:03'),
+(1, 'Admin', NULL, NULL, 'admin@gmail.com', NULL, '$2y$10$vR9Oj5Bbl.QAsnS5D7GeR.LgD/gTOO9Sqpl17GScWUZeO07dbTXii', 'admin', 'images/admin/1573645323TGCUAduttOoNN0NQAJYl-220px-User_icon_2.svg.png', 'xNrfbygrd2WETeOaVqS9jEJCNTTHNnRlxRdxVZpK97twwjZaRWEWAKWXvlFG', '2019-11-09 00:19:35', '2019-11-13 06:12:03'),
 (31, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa7696346232@gmail.com', '2019-11-12 07:02:09', '$2y$10$he8YxmZeBwdKAMqcbtQ0/.aJqTWo1Nxpm/WCKXK2XaEZAAJUE7Hc.', 'vendor', NULL, 'xxcjZrA0Ww8qifTrSKaMFgLh059F3ab6pyFXx0dUpB7bboDqEgpPqRMcd1y0', '2019-11-12 06:11:13', '2019-11-12 11:31:55'),
 (32, 'Narinder Bajwa', 'Narinder', 'Bajwa', 'bajwa9876470492@gmail.com', NULL, '$2y$10$tiBVNqE4PMLEbmyfMNH9/eXn4rkSKw0uHTNdeFJEALg2yBdwB04JG', 'user', NULL, NULL, '2019-11-12 06:25:25', '2019-11-12 06:25:25');
 
@@ -301,7 +329,7 @@ CREATE TABLE `vendor_category_meta_datas` (
 --
 
 INSERT INTO `vendor_category_meta_datas` (`id`, `parent`, `key`, `type`, `keyValue`, `user_id`, `category_id`, `created_at`, `updated_at`) VALUES
-(4, 0, 'video', 'videoGallery', '{"title":"demo","link":"https:\\/\\/www.youtube.com\\/embed\\/Bey4XXJAqS8"}', 31, 1, '2019-11-13 05:13:23', '2019-11-13 05:13:23'),
+(4, 0, 'video', 'videoGallery', '{\"title\":\"demo\",\"link\":\"https:\\/\\/www.youtube.com\\/embed\\/Bey4XXJAqS8\"}', 31, 1, '2019-11-13 05:13:23', '2019-11-13 05:13:23'),
 (5, 0, 'aboutus_slider_images', 'imageGallery', 'images/vendors/gallery/1573647610Fm9PclNaVBEolm5aIgZ1-download-_3_.jpeg', 31, 1, '2019-11-13 06:50:10', '2019-11-13 06:50:10');
 
 --
@@ -339,6 +367,12 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `seasons`
+--
+ALTER TABLE `seasons`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -365,41 +399,56 @@ ALTER TABLE `vendor_category_meta_datas`
 --
 ALTER TABLE `amenities`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
 --
 -- AUTO_INCREMENT for table `category_variations`
 --
 ALTER TABLE `category_variations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
+
 --
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `seasons`
+--
+ALTER TABLE `seasons`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
 --
 -- AUTO_INCREMENT for table `vendor_categories`
 --
 ALTER TABLE `vendor_categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `vendor_category_meta_datas`
 --
 ALTER TABLE `vendor_category_meta_datas`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

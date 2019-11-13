@@ -101,6 +101,29 @@
           </li>
 
 
+
+
+
+             <li class="nav-item has-treeview <?= ActiveMenu(['list_amenities', 'list_games', 'create_amenities_type', 'edit_amenity'],'menu-open') ?>">
+            <a href="#" class="nav-link <?= ActiveMenu(['list_amenities', 'list_games', 'create_amenities_type', 'edit_amenity'],'active') ?>">
+              <i class="nav-icon fa fa-pie-chart"></i>
+              <p>
+                Manage Seasons
+                <i class="right fa fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview <?= ActiveMenu(['list_seasons'],'active') ?>">
+                  <li class="nav-item <?= ActiveMenu(['list_seasons'],'active') ?>">
+                   <a href="{{ route('list_seasons') }}" class="nav-link <?= ActiveMenu(['list_seasons'],'active') ?>">
+                       <i class="fa fa-caret-right nav-icon"></i>
+                      <p>Seasons</p>
+                    </a>
+                  </li>
+            </ul>
+          </li>
+
+
+
           
           <li class="nav-item has-treeview <?= ActiveMenu(['admin_settings'],'menu-open') ?>">
             <a href="#" class="nav-link <?= ActiveMenu(['admin_settings'],'active') ?>">

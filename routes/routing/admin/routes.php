@@ -47,7 +47,7 @@ Route::group(['middleware' => ['AdminAuth'],'prefix' => 'admin'], function(){
 		Route::get('/event/ajax','Admin\EventController@ajax_getEvent')->name('ajax_getEvents');
 		Route::get('/event/edit/{slug}','Admin\EventController@edit')->name('edit_event');
 		Route::post('/event/edit/{slug}','Admin\EventController@update')->name('update_event');
-		Route::get('/event/status/{slug}','Admin\EventController@event_status')->name('event_status');#
+		Route::get('/event/status/{slug}','Admin\EventController@event_status')->name('event_status');
 
 		#----------------------------------------------------------------
 		#  Amenities/Games Management
@@ -64,5 +64,26 @@ Route::group(['middleware' => ['AdminAuth'],'prefix' => 'admin'], function(){
 		Route::get('/amenities/edit/{slug}','Admin\AmenityGamesController@edit')->name('edit_amenity');
 		Route::post('/amenities/edit/{slug}','Admin\AmenityGamesController@update')->name('update_amenity');
 		Route::get('/amenities/status/{slug}','Admin\AmenityGamesController@amenity_status')->name('amenity_status');
+
+
+
+		#----------------------------------------------------------------
+		#  Event/Celebration Management
+		#----------------------------------------------------------------
+
+		Route::get('/seasons','Admin\SeasonController@index')->name('list_seasons');
+		Route::get('/seasons/create','Admin\SeasonController@create')->name('create_seasons');
+		Route::post('/seasons/create','Admin\SeasonController@store')->name('store_seasons');
+		Route::get('/seasons/ajax','Admin\SeasonController@ajax_getEvent')->name('ajax_getSeasons');
+		Route::get('/seasons/edit/{slug}','Admin\SeasonController@edit')->name('edit_seasons');
+		Route::post('/seasons/edit/{slug}','Admin\SeasonController@update')->name('update_seasons');
+		Route::get('/seasons/status/{slug}','Admin\SeasonController@event_status')->name('seasons_status');
+
+
+
+
+
+
+
 
 });
