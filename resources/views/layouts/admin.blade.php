@@ -44,8 +44,8 @@
  
 <link href="/bootstrap-fileinput-master/themes/explorer-fas/theme.css" media="all" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="{{url('/AdminFILE/dist/css/jquery-ui.css')}}">
- 
- 
+<link rel="stylesheet" href="{{url('/AdminFILE/dist/css/admin-styles.css')}}">
+  
  
   @yield('stylesheets')
 <style type="text/css">
@@ -54,6 +54,7 @@
     margin: 0;
   }
 </style>
+
 
 
 
@@ -92,16 +93,6 @@
 <script src="https://cdn.ckeditor.com/4.11.3/full/ckeditor.js"></script>
 
 <script src="{{url('/AdminFILE/plugins/select2/select2.full.min.js')}}"></script>
-
-
-
-
-
-
-
-
-
-
 
 </head>
 <body class="hold-transition sidebar-mini">
@@ -258,9 +249,7 @@
 <!-- ./wrapper -->
 
 
-
-
-
+<script src="{{url('/AdminFILE/validations/customValidation.js')}}"></script>
 
 @yield('scripts')
 

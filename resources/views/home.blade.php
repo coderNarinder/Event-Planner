@@ -127,7 +127,8 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="nine" class="">
-                           <span class="service-icon">  <img class="category_icon" src="{{url('frontend/images/event-planners.png')}}" /></span>
+                           <span class="service-icon"> 
+                            <img class="category_icon" src="{{url('frontend/images/event-planners.png')}}" /></span>
                            <h3>Event Planners</h3>
                         </a>
                      </div>
@@ -160,7 +161,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="twelve" class="">
-                           <span class="service-icon"><i class="fas fa-ring"></i></span>
+                           <span class="service-icon">
+                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Funeral services</h3>
                         </a>
                      </div>
@@ -170,7 +173,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="thirteen" class="">
-                           <span class="service-icon"><i class="fas fa-hotel"></i></span>
+                           <span class="service-icon">
+                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Lodging</h3>
                         </a>
                      </div>
@@ -180,7 +185,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="fourteen" class="">
-                           <span class="service-icon"><i class="fas fa-ring"></i></span>
+                           <span class="service-icon">
+                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Musicians / instrumentalist</h3>
                         </a>
                      </div>
@@ -191,7 +198,8 @@
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="fifteen" class="">
                            <span class="service-icon">
-                           <i class="fas fa-users"></i></span>
+                           <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                        </span>
                            <h3>Officiants/Staffing</h3>
                         </a>
                      </div>
@@ -201,7 +209,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="sixteen" class="">
-                           <span class="service-icon"><i class="fas fa-glass-cheers"></i></span>
+                           <span class="service-icon">
+                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Party Rentals</h3>
                         </a>
                      </div>
@@ -211,7 +221,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="seventeen" class="">
-                           <span class="service-icon"><i class="fas fa-camera-retro"></i></span>
+                           <span class="service-icon">
+                             <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Photography</h3>
                         </a>
                      </div>
@@ -221,7 +233,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="eighteen" class="">
-                           <span class="service-icon"><i class="fas fa-ring"></i></span>
+                           <span class="service-icon">
+                           <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Printing and Stationary</h3>
                         </a>
                      </div>
@@ -231,7 +245,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="ninteen" class="">
-                           <span class="service-icon"><i class="fas fa-shield-alt"></i></span>
+                           <span class="service-icon">
+                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Security/Bouncers</h3>
                         </a>
                      </div>
@@ -241,7 +257,9 @@
                   <div class="tab-button">
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="twenty" class="">
-                           <span class="service-icon"><i class="fas fa-car"></i></span>
+                           <span class="service-icon">
+                             <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                           </span>
                            <h3>Transportation</h3>
                         </a>
                      </div>
@@ -252,7 +270,8 @@
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="twentyone" class="">
                            <span class="service-icon">
-                           <i class="fas fa-gifts"></i></span>
+                          <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                        </span>
                            <h3>Venues</h3>
                         </a>
                      </div>
@@ -263,7 +282,8 @@
                      <div class="tab-item">
                         <a href="javascript:void();" data-tag="twentytwo" class="">
                            <span class="service-icon">
-                           <i class="fas fa-video"></i></span>
+                              <img class="category_icon" src="{{url('frontend/images/band.png')}}" />
+                         </span>
                            <h3>Videography</h3>
                         </a>
                      </div>
@@ -1543,7 +1563,7 @@
          <h2>events</h2>
       </div>
       <!--Row One-->
-      <div class="event-slider owl-carousel owl-theme owl-loaded owl-drag">
+      <div class="event-slider owl-carousel owl-theme owl-loaded owl-drag" id="event-slider-1">
          <div class="item">
             <a href="javascript:void(0)">
                <div class="event-wrap">
@@ -1879,7 +1899,9 @@
                      <div class="tab-button">
                         <div class="package-item">
                            <a href="javascript:void();" data-tag="t-one" class="activelink">
-                              <span class="service-icon"><i class="fas fa-building"></i></span>
+                              <span class="service-icon">                     
+                                 <img class="category_icon" src="/frontend/images/venue.png">
+                              </span>
                               <h3>Venues</h3>
                            </a>
                         </div>
@@ -1889,7 +1911,9 @@
                      <div class="tab-button">
                         <div class="package-item">
                            <a href="javascript:void();" data-tag="t-two" class="">
-                              <span class="service-icon"><i class="fas fa-camera"></i></span>
+                              <span class="service-icon">
+                                 <img class="category_icon" src="/frontend/images/photography.png">
+                              </span>
                               <h3>Photography</h3>
                            </a>
                         </div>
@@ -1899,7 +1923,9 @@
                      <div class="tab-button">
                         <div class="package-item">
                            <a href="javascript:void();" data-tag="t-three" class="">
-                              <span class="service-icon"><i class="fas fa-stop"></i></span>
+                              <span class="service-icon">
+                                 <img class="category_icon" src="/frontend/images/catering.png">
+                              </span>
                               <h3>caterers</h3>
                            </a>
                         </div>
@@ -2472,4 +2498,15 @@
       </div>
    </div>
 </section>
+@endsection
+
+@section('scripts')
+<script>
+   $( document ).ready(function() {
+      setTimeout(() => {
+         $('#event-slider-1').css('display', 'block');   
+      }, 1500)
+});
+</script>
+
 @endsection

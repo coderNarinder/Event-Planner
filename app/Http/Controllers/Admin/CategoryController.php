@@ -7,6 +7,9 @@ use App\Http\Controllers\Controller;
 use App\Category;
 use Auth;
 use App\CategoryVaritant;
+use App\Event;
+use App\Amenity;
+use App\CategoryVariation;
 class CategoryController extends AdminController
 {
 
@@ -120,8 +123,6 @@ class CategoryController extends AdminController
               'meta_description' => 'required',
               'label' => 'required',
               'image' => 'image',
-              
- 
        ]);
 
        $c=new Category;
@@ -146,11 +147,9 @@ class CategoryController extends AdminController
 
     public function edit(Request $request,$slug)
     {
-    	$categories = Category::where('slug',$slug)->first();
+    	$categories = Category::where('slug', $slug)->first();
 
-
-
-    	if(empty($categories)){
+    	if(empty($categories)) {
     		return redirect(Auth::user()->role.'/category/index');
     	}
 
@@ -167,12 +166,9 @@ class CategoryController extends AdminController
     	->with('title','Categories');
     }
 
-
      public function edit2(Request $request)
     {
       $categories = Category::where('id',$request->category_id)->first();
-
-
  
       $parent = Category::where('parent',0)->where('id','!=',$request->category_id)->orderBy('label','ASC')->get();
       $subparent = Category::where('parent',$categories->parent)
@@ -203,8 +199,6 @@ class CategoryController extends AdminController
               'meta_tag' => 'required',
               'meta_description' => 'required',
               'image' => 'image',
-              
- 
        ]);
 
         $categories = Category::where('slug',$slug)->first();
@@ -290,7 +284,7 @@ class CategoryController extends AdminController
 
 
      return view('admin.category.variations')
-      ->with('addLink',Auth::user()->role.'/category/index')
+      ->with('addLink',Auth::User()->role.'/category/index')
       ->with('techniques',$techniques)
       ->with('brands',$brands)
       ->with('CaptureArea',$CaptureArea)
@@ -303,7 +297,62 @@ class CategoryController extends AdminController
       ->with('title',$category->label."'s Variatants");
   }
 
+  public function category_variations(Request $request, $slug) {
+    $category = Category::FindBySlugOrFail($slug);
+    $events = Event::all();
+    $amenities = Amenity::where('type', 'amenity')->get();
+    $games = Amenity::where('type', 'game')->get();
+    $category_variation = CategoryVariation::where('category_id', $category->id)->get();
 
+    return view('admin.category.variations')
+    ->with('addLink',route('list_category'))
+    ->with('title', 'Add Category Variatants')
+    ->with('category', $category)
+    ->with('events', $events)
+    ->with('amenities', $amenities)
+    ->with('category_variation', $category_variation)
+    ->with('games', $games);
+  }
+
+  public function category_variations_save(Request $request, $slug) {
+    $category = Category::FindBySlugOrFail($slug);
+
+    if(!empty($request->events) && count($request->events)) {
+        CategoryVariation::where(['category_id' => $category->id, 'type'=> 'event'])->delete();
+      foreach ($request->events as $key => $value) {
+        CategoryVariation::create([
+          'category_id' => $category->id,
+          'variant_id' => $value,
+          'type' => 'event'
+        ]);        
+      }
+    }
+
+    if(!empty($request->amenities) && count($request->amenities)) {
+      CategoryVariation::where(['category_id' => $category->id, 'type'=> 'amenity'])->delete();
+      foreach ($request->amenities as $key => $value) {
+        CategoryVariation::create([
+          'category_id' => $category->id,
+          'variant_id' => $value,
+          'type' => 'amenity'
+        ]);        
+      }
+    }
+
+    if(!empty($request->games) && count($request->games)) {
+      CategoryVariation::where(['category_id' => $category->id, 'type'=> 'game'])->delete();
+      foreach ($request->games as $key => $value) {
+        CategoryVariation::create([
+          'category_id' => $category->id,
+          'variant_id' => $value,
+          'type' => 'game'
+        ]);        
+      }
+    }
+
+      return redirect()->route('list_category')->with('flash_message', 'Category has been saved successfully!');
+
+  }
 
 public function checkCheckBrand($key,$category_id,$brand_id)
 {

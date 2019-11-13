@@ -29,26 +29,19 @@
 
 <div class="col-md-6">
 
-  <form role="form" method="post" action="{{url(route('store_coupons'))}}" enctype="multipart/form-data">
+  <form role="form" method="post" action="{{url(route('store_amenities'))}}" enctype="multipart/form-data">
                 <div class="card-body">
-
-
                    @csrf
-                  
 
-                   {{textbox($errors,'Coupon Code*','coupon')}}
-                   {{selectsimple($errors,'Discount Type','discount_type',['1'=>'Percent','2'=>'Fixed Discount'])}}
-                   {{selectsimple($errors,'Coupon For','coupon_for',['1'=>'Selected Users','2'=>'For All User'])}}
-                   {{textnumber($errors,'Discount*','discount')}}
-                   {{textnumber($errors,'Apply on minimum amount*','min_cart_total')}}
-                   {{textnumber($errors,'Maximum Discount Amount*','max_discount')}}
-                   <!-- {{textnumber($errors,'Usage Time*','usage_time')}} -->
-                   {{DateBox($errors,'Expire Date','expire_date')}}
-
+                   {{textbox($errors,'Amenity Type*','name')}}
                    {{textarea($errors,'Description','description')}}
 
-                    
+                  <input type="radio" name="type" value="amenity" checked> Amenity
+                  <br>
+                  <input type="radio" name="type" value="game"> Game
+
                 </div>
+
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -59,14 +52,6 @@
 
 </div>
 
-
-
-
-
-
-
-
-              
             </div>
             <!-- /.card-body -->
           </div>
@@ -79,18 +64,8 @@
     </section>
 
  
-     
 @endsection
-
-
-
 
 @section('scripts')
 
- 
-
-
 @endsection
-
-
- 

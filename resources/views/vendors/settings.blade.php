@@ -1,5 +1,5 @@
 @extends('layouts.vendor')
-@section('vendorContent')
+@section('vendorContents')
 
 
 

@@ -48,6 +48,8 @@ public function checkCategoryOfVendor()
 
    public function index($value='')
    {
+
+     
        return view('vendors.dashboard');
    }
 

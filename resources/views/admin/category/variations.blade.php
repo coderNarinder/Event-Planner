@@ -14,297 +14,103 @@
             </ol>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
+
+
        <section class="content">
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <!-- /.card-header -->
-       @include('admin.error_message')
+         @include('admin.error_message')
  
             <div class="card-body">
 
 
+@php
+ $sel_evt= array(); 
+ $sel_amenities= array(); 
+ $sel_games= array(); 
+@endphp
 
-  <form role="form" id="formBrands" class="row categoryVariants">
+@if(count($category_variation))
+@foreach($category_variation as $fillCategory)
+@if($fillCategory->type == 'event')
+@php $sel_evt[] = $fillCategory->variant_id; @endphp  
+@elseif($fillCategory->type == 'amenity')
+@php $sel_amenities[] = $fillCategory->variant_id; @endphp
+@else
+@php $sel_games[] = $fillCategory->variant_id; @endphp
+@endif
+@endforeach
+@endif
+
+
+
+  <form role="form" id="formVariations" action="{{ route('category_variations_save', ['slug' => $category->slug]) }}" method="POST" class="row categoryVariants">
       @csrf
 
-        
         <div class="col-md-6">
-           
-
-                
-
-                <h3 class="card-title">Choose Brands</h3>
+                <h3 class="card-title">Choose Events</h3>
                 <ul class="unstyled centered">
-                  @foreach($brands as $b)
-  
-                        <li>
-                             <input class="styled-checkbox brand-checkbox" name="brand[]" id="styled-checkbox-{{$b->id}}" type="checkbox" value="{{$b->id}}" {{$ControllerOject->checkCheckBrand('brands',$category_id,$b->id)}}>
-                             <label for="styled-checkbox-{{$b->id}}">{{$b->brand_name}}</label>
-                        </li>
-
+                  @foreach($events as $event)  
+                    <li>
+                         <input class="styled-checkbox brand-checkbox" name="events[]" id="styled-checkbox-{{$event->id}}" type="checkbox" value="{{$event->id}}" {{ !empty($sel_evt) && in_array($event->id, $sel_evt) ? 'checked' : '' }}>
+                         <label for="styled-checkbox-{{$event->id}}">{{$event->name}}</label>
+                    </li>
                   @endforeach
                   
                 </ul>
-                <!-- radio -->
-
-
-
-
-                <h3 class="card-title">Choose Techniques</h3>
-                <ul class="unstyled centered">
-                  @foreach($techniques as $t)
-  
-                        <li>
-                             <input class="styled-checkbox brand-checkbox" name="techniques[]" id="techniques-checkbox-{{$t->id}}" type="checkbox" value="{{$t->id}}"
-                             {{$ControllerOject->checkCheckBrand('techniques',$category_id,$b->id)}}>
-                             <label for="techniques-checkbox-{{$t->id}}">{{$t->technique_name}}</label>
-                        </li>
-
-                  @endforeach
-                  
-                </ul>
-                <!-- radio -->
-
-
-
-
-                 <h3 class="card-title">Choose Styles</h3>
-                <ul class="unstyled centered">
-                  @foreach($styles as $s)
-  
-                        <li>
-                             <input class="styled-checkbox brand-checkbox" name="styles[]" id="product-style-{{$s->id}}" type="checkbox" value="{{$s->id}}"
-                              {{$ControllerOject->checkCheckBrand('styles',$category_id,$s->id)}}>
-                             <label for="product-style-{{$s->id}}">{{$s->title}}</label>
-                        </li>
-
-                  @endforeach
-                  
-                </ul>
-                <!-- radio -->
-
-
-
-
-
-               <h3 class="card-title">Choose Materials</h3>
-                <ul class="unstyled centered">
-                  @foreach($materials as $s)
-  
-                        <li>
-                             <input class="styled-checkbox brand-checkbox" name="materials[]" id="product-materials-{{$s->id}}" type="checkbox" value="{{$s->id}}"
-                              {{$ControllerOject->checkCheckBrand('materials',$category_id,$s->id)}}>
-                             <label for="product-materials-{{$s->id}}">{{$s->title}}</label>
-                        </li>
-
-                  @endforeach
-                  
-                </ul>
-                <!-- radio -->
-
-
-
-               <h3 class="card-title">Choose Mockup Capture Area</h3>
-                <ul class="unstyled centered">
-                  @foreach($CaptureArea as $s)
-  
-                        <li>
-                             <input class="styled-checkbox brand-checkbox" name="CaptureArea[]" id="product-mockuparea-{{$s->id}}" type="checkbox" value="{{$s->id}}"
-                              {{$ControllerOject->checkCheckBrand('CaptureArea',$category_id,$s->id)}}>
-                             <label for="product-mockuparea-{{$s->id}}">{{$s->product_type}}</label>
-                        </li>
-
-                  @endforeach
-                  
-                </ul>
-                <!-- radio -->
-
-
-
-
-              
-
-
-                           
-                
-        </div>
-       
-
- 
-
-
- 
-
-
-
-
-
-
-       <div class="col-md-6">
-
-
-                  <h3 class="card-title">Choose Product Model</h3>
-                <ul class="unstyled centered">
-                  @foreach($ProductModel as $m)
-  
-                        <li>
-                             <input class="styled-checkbox brand-checkbox" 
-                             name="ProductModel[]" 
-                             id="product-model-{{$m->id}}" type="checkbox" value="{{$m->id}}"
-                              {{$ControllerOject->checkCheckBrand('models',$category_id,$m->id)}}>
-                             <label for="product-model-{{$m->id}}">{{$m->title}}</label>
-                        </li>
-
-                  @endforeach
-                  
-                </ul>
-                <!-- radio -->
-          
- 
-                <h3 class="card-title">Choose Product Sizes</h3>
-
-                <ul class="unstyled centered">
-                  @foreach($ProductSize as $size)
-  
-                        <li>
-                             <input class="styled-checkbox brand-checkbox" 
-                             name="sizes[]" id="product-size-{{$size->id}}" type="checkbox" value="{{$size->id}}"
-                              {{$ControllerOject->checkCheckBrand('sizes',$category_id,$size->id)}}>
-                             <label for="product-size-{{$size->id}}">{{$size->title}}</label>
-                        </li>
-
-                  @endforeach
-                  
-                </ul>
-                <!-- radio -->
- 
         </div>
 
+        <div class="col-md-6">
+                <h3 class="card-title">Choose Amenities</h3>
+                <ul class="unstyled centered">
+                  @foreach($amenities as $amenity)
+  
+                    <li>
+                         <input class="styled-checkbox brand-checkbox" name="amenities[]" id="styled-checkbox-{{$amenity->id}}" type="checkbox" value="{{$amenity->id}}" {{ !empty($sel_amenities) && in_array($amenity->id, $sel_amenities) ? 'checked' : '' }}>
+                         <label for="styled-checkbox-{{$amenity->id}}">{{$amenity->name}}</label>
+                    </li>
 
+                  @endforeach
+                  
+                </ul>
+        </div>
 
+        <div class="col-md-6">
+                <h3 class="card-title">Choose Games</h3>
+                <ul class="unstyled centered">
+                  @foreach($games as $game)
+  
+                    <li>
+                         <input class="styled-checkbox brand-checkbox" name="games[]" id="styled-checkbox-{{$game->id}}" type="checkbox" value="{{$game->id}}" {{ !empty($sel_games) && in_array($game->id, $sel_games) ? 'checked' : '' }}>
+                         <label for="styled-checkbox-{{$game->id}}">{{$game->name}}</label>
+                    </li>
 
-
-
-
-
-
-
-
-
-
+                  @endforeach
+                  
+                </ul>
+        </div>
 
 <div class="col-md-12">
-          <div id="msg"></div>
-
-      <button class="btn btn-primary">Save</button>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- </form>
-
-
-
-
-
-
-
-
-              
-            </div>
-            <!-- /.card-body -->
-          </div>
-          <!-- /.card -->
-          <!-- /.card -->
+      <div class="card-footer">
+          <button type="submit" id="btnVariations" class="btn btn-primary">Submit</button>
         </div>
-        <!-- /.col -->
       </div>
-      <!-- /.row -->
+</form>
+            
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
  
      
 @endsection
 
-
-
-
 @section('scripts')
-
-
-<script type="text/javascript">
-
- 
- 
-
-
-
-
-$('#formBrands').on('submit',function(){
-   
-   var formData = $( this ).serialize();
-
-var request = $.ajax({
-  url: "<?= url(route('store_variations',$category_id)) ?>",
-  method: "POST",
-  data: formData,
-  dataTYPE:'json',
-});
- 
-request.done(function( msg ) {
-        if(msg == 0){
-          $('#msg').html(msgbox('Invalid category','warning'));
-        }else if(msg == 1){
-          $('#msg').html(msgbox('Data saved!','success'));
-        }
-});
- 
-request.fail(function( jqXHR, textStatus ) {
-  alert( "Request failed: " + textStatus );
-  $('#msg').html(msgbox("Request failed: " + textStatus,'warning'));
-});
-
- 
-   return false;
-
-});
-
-
-
-function msgbox(msg,ty) {
-      text ='<div class="alert alert-'+ty+' alert-dismissible">';
-      text +='<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>';
-      text +='<h5><i class="icon fa fa-check"></i> Alert!</h5>';
-      text +=msg;
-      text +='</div>';
-
-      return text;
-}
-
-
-
-</script>
-
-
+<script src="{{url('/AdminFILE/validations/variationsValidation.js')}}"></script>
 @endsection
-
-
  

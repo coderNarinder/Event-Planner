@@ -68,23 +68,22 @@
                 
                                 
                                <div class="form-links">
-                                           
+                                         @if (Route::has('password.request'))
+                                                <a class="normal-link mb-3" href="{{ route('password.request') }}">
+                                                    {{ __('Forgot Your Password?') }}
+                                                </a>
+                                            @endif  
                                         <p> 
                                             Do not have a account please click to register as a
-                                            <a href="/register">User</a>
+                                            <a href="/register" class="normal-link">User</a>
                                             or 
-                                            <a href="/vendor/register">Vendor</a>
+                                            <a href="/vendor/register" class="normal-link">Vendor</a>
                                         </p>
                                 </div>
                                     <div class="btn-wrap">
                                             <button class="cstm-btn solid-btn">Login</button>
 
-                                             <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />
-                                            @if (Route::has('password.request'))
-                                                <a class="cstm-btn" href="{{ route('password.request') }}">
-                                                    {{ __('Forgot Your Password?') }}
-                                                </a>
-                                            @endif
+                                             <img  class="pl-3 loading hide" src="{{url('/images/small-loader.gif')}}" style="display: none;" />                                            
 
                                             <div class="messages"></div>
                                            

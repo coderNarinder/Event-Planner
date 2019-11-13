@@ -1,46 +1,49 @@
 @extends('layouts.vendor')
-@section('vendorContent')
+@section('vendorContents')
 
 
+<div class="container-fluid">
+      <div class="row">      
 
-<div class="row">
-
-
-   <h3>PROFILE SETTINGS</h3>
-
-<div class="col-md-12">
- 
-  <form role="form" action="" method="post" enctype="multipart/form-data">
-                <div class="card-body">
-
-
-                   @csrf
+      <div class="col-lg-6 offset-lg-3">
+        <div class="section-title text-center">
+          <h2>PROFILE SETTINGS</h2>
+        </div>
+      <div class="vendor-form-wrap">
+      <form role="form" action="" method="post" enctype="multipart/form-data" class="">
                     
-                   {{password($errors,'Old Password*','old_password')}}
-                   {{password($errors,'New Password*','password')}}
-                   {{password($errors,'Confirm Password*','password_confirmation')}}  
-                   
+                    <div class="card-body">
 
-                    
+                 
+                       @csrf
+                        
+                       {{password($errors,'Old Password*','old_password')}}
+                       {{password($errors,'New Password*','password')}}
+                       {{password($errors,'Confirm Password*','password_confirmation')}}  
+                       
 
-                  
-                </div>
-                <!-- /.card-body -->
+                        
 
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Change Password</button>
-                </div>
- </form>
+                      
+                    </div>
+                    <!-- /.card-body -->
 
-
-</div>
-
-
-
-
+                    <div class="card-footer text-center">
+                      <button type="submit" class="cstm-btn">Change Password</button>
+                    </div>
+      </form>
 
 
-</div>
+      </div>
+    </div>
+
+
+
+
+
+
+      </div>
+    </div>
 
 
 

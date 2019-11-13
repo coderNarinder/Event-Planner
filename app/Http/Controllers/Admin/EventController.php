@@ -36,7 +36,7 @@ class EventController extends Controller
 	public function store(Request $request)
 	{
 		 $this->validate($request,[
-	                 'name' => 'required|max:10|unique:events',
+	                 'name' => 'required|max:50|unique:events',
 	                 'description' => 'required'
 	                 
 		 ],[
@@ -79,7 +79,7 @@ class EventController extends Controller
 	{
 	     $event= Event::where('slug',$slug)->first();
 		 $this->validate($request,[
-	                 'name' => 'required|max:10|unique:events,name,'.$event->id,
+	                 'name' => 'required|max:50|unique:events,name,'.$event->id,
 	                 'description' => 'required'
 	                 
 		 ],[

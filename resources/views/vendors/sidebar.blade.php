@@ -1,75 +1,83 @@
- <div class="col-md-3">
-            <div class="profile-sidebar">
-                <!-- SIDEBAR USERPIC -->
-                <div class="profile-userpic">
-                    <img src="http://keenthemes.com/preview/metronic/theme/assets/admin/pages/media/profile/profile_user.jpg" class="img-responsive" alt="">
-                </div>
-                <!-- END SIDEBAR USERPIC -->
-                <!-- SIDEBAR USER TITLE -->
-                <div class="profile-usertitle">
-                    <div class="profile-usertitle-name">
-                        {{Auth::user()->name}}
-                    </div>
-                    <div class="profile-usertitle-job">
-                        Vendor
-                    </div>
-                </div>
-                <!-- END SIDEBAR USER TITLE -->
-                <!-- SIDEBAR BUTTONS -->
-              <!--   <div class="profile-userbuttons">
-                    <button type="button" class="btn btn-success btn-sm">Follow</button>
-                    <button type="button" class="btn btn-danger btn-sm">Message</button>
-                </div> -->
-                <!-- END SIDEBAR BUTTONS -->
-                <!-- SIDEBAR MENU -->
-                <div class="profile-usermenu">
-                    <ul class="nav">
-                        <li class="active">
-                            <a href="{{url(route('vendor_dashboard'))}}">
-                            <i class="glyphicon glyphicon-home"></i>
-                            Overview </a>
-                        </li>
-                        
 
 
-  @if(Auth::user()->services->count() > 0)
+
+        <aside class="side-nav" id="show-side-navigation1">
+      <i class="fa fa-bars close-aside hidden-sm hidden-md hidden-lg" data-close="show-side-navigation1"></i>
+      <div class="heading">
+        <figure class="user_img">
+        <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
+    </figure>
+        <div class="info">
+          <h3><a href="#">John Doe</a></h3>
+          <p>Lorem ipsum dolor sit.</p>
+        </div>
+      </div>
+
+      <ul class="categories">
+        <li><a href="#"> <i class="fa fa-home fa-fw" aria-hidden="true"></i> About us</a>
+          <ul class="side-nav-dropdown">
+            <li><a href="#">Lorem ipsum</a></li>
+            <li><a href="#">ipsum dolor</a></li>
+            <li><a href="#">dolor ipsum</a></li>
+            <li><a href="#">amet consectetur</a></li>
+            <li><a href="#">ipsum dolor sit</a></li>
+          </ul>
+        </li>
+
+
+
+   @if(Auth::user()->services->count() > 0)
  
-      @foreach(Auth::user()->services as $cate)
+       @foreach(Auth::user()->services as $cate)
+
+       <li><a href="javascript:void(0);"> 
+         <i class="fa fa-support fa-fw"></i> {{$cate->category->label}} Management</a>
+          <ul class="side-nav-dropdown">
+               <li role="presentation" >
+                <a href="{{url(route('vendor_category_management',$cate->category->slug))}}">Basic Information</a>
+              </li>
+              <li role="presentation" >
+                <a href="{{url(route('vendor_category__image_management',$cate->category->slug))}}">Photo Gallery</a>
+              </li>
+              <li role="presentation" >
+                <a href="{{url(route('vendor_category_videos_management',$cate->category->slug))}}">Video Gallery</a>
+              </li>
+          </ul>
+        </li>
        
-                        <li>
-                            <a href="{{url(route('vendor_category_management',$cate->category->slug))}}">
-                            <i class="glyphicon glyphicon-flag"></i>
-                           {{$cate->category->label}} Management
-                            </a>
-                        </li>
+                       
 
       @endforeach
 
-  @endif
+    @endif
 
+
+
+        
+        <li><a href="#"> <i class="fa fa-envelope fa-fw"></i>Settings</a>
+          <ul class="side-nav-dropdown">
+           
                         <li>
                             <a href="{{url(route('vendor_profile'))}}">
-                            <i class="glyphicon glyphicon-flag"></i>
+                           
                             Profile Settings </a>
                         </li>
 
 
                          <li>
                             <a href="{{url(route('vendor_password'))}}">
-                            <i class="glyphicon glyphicon-flag"></i>
+                            
                             Password Settings </a>
                         </li>
-
-
-
-
-
-
-                    </ul>
-                </div>
-                <!-- END MENU -->
-            </div>
-        </div>
+          </ul>
+        </li>
+         
+        
+         
+        <li><a href="{{url('/logout')}}"> <i class="fa fa-comments-o fa-fw"></i>Logout</a></li>
+      </ul>
+    </aside>
+    
 
 
 

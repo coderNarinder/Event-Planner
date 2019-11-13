@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Print Genie - Print on Demand</title>
+  <title>Admin Panel</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -31,34 +31,32 @@
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
 </head>
 <body class="hold-transition login-page">
-<div class="login-box">
+ <div class="login-box">
   <div class="login-logo">
-    <a href="{{url('/')}}"><b>Print</b>GENIE</a>
-  </div>
+
+    <a href="{{url('/')}}">
+      <span class="dashboard-logo"><img src="/frontend/images/logo.svg"></span>
+      <b>Envisiun</b></a>
+  </div>  
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      @if(Session::has('messages'))
+     
+
+                    
+
+
+
+      <form action="{{ url('admin/login') }}" method="post">
+       @if(Session::has('messages'))
 
             <div class="errorBox">
                  {{Session::get('messages')}}
             </div>
  
-      @endif
-
-                     @if($errors->has('g-recaptcha-response'))
-                            
-                             <div class="errorBox" for="g-recaptcha-response">
-                              {{$errors->first('g-recaptcha-response')}}
-                            </div>
-
-                         @endif
-
-
-
-      <form action="{{ url('admin/login') }}" method="post">
+       @endif
         @csrf
        
         {{textbox($errors,'Email','email')}}
@@ -66,36 +64,37 @@
          
           <br>
         <div class="row">
-          <div class="col-md-12">
-         
-          <!-- /.col -->
+          <div class="col-md-12 text-center">        
           
-            <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+            <button type="submit" class="cstm-btn">Sign In</button>
 
                            <label class="errorCapcha" for="g-recaptcha-response">
                               
                             </label>
-          
-        </div>
-
+            </div>
+        
+        <div class="col-md-12 text-center"> 
          @if (Route::has('password.request'))
                                     <a class="btn btn-link text-center" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                                 @endif
-          <!-- /.col -->
+                              </div>
+                                
+        
         </div>
       </form>
 
       
-      <!-- /.social-auth-links -->
+   
 
       
     </div>
-    <!-- /.login-card-body -->
+    
   </div>
-</div>
+</div>  
 <!-- /.login-box -->
+
 
  
  

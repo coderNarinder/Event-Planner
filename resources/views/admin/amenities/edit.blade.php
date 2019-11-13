@@ -1,6 +1,7 @@
 @extends('layouts.admin')
  
 @section('content')
+
  <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -16,6 +17,7 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
+
        <section class="content">
       <div class="row">
         <div class="col-12">
@@ -29,25 +31,19 @@
 
 <div class="col-md-6">
 
-  <form role="form" method="post" action="{{url(route('update_coupons',$coupons->id))}}" enctype="multipart/form-data">
+  <form role="form" method="post" action="{{url(route('update_amenity', $amenity->slug))}}" enctype="multipart/form-data">
                 <div class="card-body">
 
 
                    @csrf
                   
+                   {{textbox($errors,'Amenity Type*','name', $amenity->name)}}
+                   {{textarea($errors,'Description','description', $amenity->description)}}
 
-                   {{textbox($errors,'Coupon Code*','coupon',$coupons->coupon)}}
-                   {{selectsimple($errors,'Discount Type','discount_type',['1'=>'Percent','2'=>'Fixed Discount'],$coupons->discount_type)}}
-                   {{selectsimple($errors,'Coupon For','coupon_for',['1'=>'Selected Users','2'=>'For All User'],$coupons->coupon_for)}}
-                   {{textnumber($errors,'Discount*','discount',$coupons->discount)}}
+                  <input type="radio" name="type" value="amenity" {{ $amenity->type == 'amenity' ? 'checked' : '' }}> Amenity
+                  <br>
+                  <input type="radio" name="type" value="game" {{ $amenity->type == 'game' ? 'checked' : '' }}> Game
 
-                  
-                   {{textnumber($errors,'Apply on minimum amount*','min_cart_total',$coupons->min_cart_total)}}
-                   {{textnumber($errors,'Maximum Discount Amount*','max_discount',$coupons->max_discount)}}
-                  <!--  {{textnumber($errors,'Usage Time*','usage_time',$coupons->usage_time)}} -->
-                    {{DateBox($errors,'Expire Date','expire_date',$coupons->expire_date)}}
-                   {{textarea($errors,'Description','description',$coupons->description)}}
-                    
                 </div>
                 <!-- /.card-body -->
 
@@ -79,7 +75,6 @@
     </section>
 
  
-     
 @endsection
 
 

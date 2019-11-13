@@ -73,9 +73,14 @@
                                         {{$cate->label}} <sup class="{{$cate->status == 0 ? 'redbg' : ''}}"><span class="badge">
                                                <?= $cate->status == 1 ? 'Active' : 'Deactive' ?>
                                                </span></sup>
+                                   <a href="{{url(route('category_variations', $cate->slug))}}" class="btn pull-right btn-success"><i class="fa fa-plus"></i></a>
                                    
                                         <a href="{{url(route('edit_category',$cate->slug))}}" class="btn pull-right btn-primary"><i class="fa fa-pencil"></i></a>
+
+                                        
+
                                         <a href="{{url(route('delete_category',$cate->id))}}" class="btn pull-right btn-danger"><i class="fa fa-trash"></i></a>
+
                                     </div>
 
 

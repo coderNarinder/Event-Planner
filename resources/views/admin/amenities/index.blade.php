@@ -9,12 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-               <h1>Test</h1> 
+               <h1>{{$title}}</h1> 
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item active"><a href="">Dashboard</a></li>
-              <li class="breadcrumb-item "><a href="">Add</a></li>
+              <li class="breadcrumb-item active"><a href="{{ url('master/') }}">Dashboard</a></li>
+              <li class="breadcrumb-item "><a href="{{ url(route($addLink)) }}">Add</a></li>
             </ol>
           </div>
         </div>
@@ -31,12 +31,9 @@
                 <thead>
                 <tr>
                     
-                    
-                    <th>Coupon</th>
-                    <th>Discount</th>
-                    <th>Expiry Date</th>
-
-
+                    @php $i=1; @endphp
+                    <th>Name</th>
+                    <th>Description</th>
                     <th>Status</th>
                     <th width="120">Action</th>
 
@@ -48,6 +45,11 @@
                 </tbody>
               </table>
             </div>
+      <!-- /.row -->
+    </section>
+
+    
+     <div>  </div> 
             </div>
             <!-- /.card-body -->
           </div>
@@ -56,12 +58,10 @@
         </div>
         <!-- /.col -->
       </div>
-      <!-- /.row -->
-    </section>
 
-    
-     <div>  </div> 
+@endsection
 
+@section('scripts')
 <script type="text/javascript">
  
  
@@ -71,18 +71,12 @@ $(function() {
          
         processing: true,
         serverSide: true,
-        ajax: '<?= url(route('ajax_coupons')) ?>',
+        ajax: '<?= url(route('ajax_getAmenity')) ?>',
         columns: [
-             { data: 'coupon', name: 'coupon' },
-             { data: 'discount', name: 'discount' },
-             { data: 'expire_date', name: 'expire_date' },
-            
+             { data: 'name', name: 'name' },
+             { data: 'description', name: 'description' },            
              { data: 'status', name: 'status' },
              { data: 'action', name: 'action' },
-
-             
-
-             
         ]
        
     });
